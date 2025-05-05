@@ -14,13 +14,17 @@ export class ProductsService extends PrismaClient implements ProductsService {
   }
 
   create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+
+    this.logger.log('**** Creating product');
+    return this.product.create({
+      data: createProductDto
+    });
   }
 
   findAll() {
-    return `This action returns all products`;
+    return this.product.findMany();
   }
-
+  
   findOne(id: number) {
     return `This action returns a #${id} product`;
   }
@@ -32,4 +36,5 @@ export class ProductsService extends PrismaClient implements ProductsService {
   remove(id: number) {
     return `This action removes a #${id} product`;
   }
+
 }
